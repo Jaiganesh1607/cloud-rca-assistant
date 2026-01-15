@@ -1,0 +1,7 @@
+venv/
+.env
+serviceAccountKey.json
+__pycache__
+data/
+client_secret.json
+node_modules/
