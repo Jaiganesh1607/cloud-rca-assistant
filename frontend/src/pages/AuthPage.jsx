@@ -66,22 +66,32 @@ const AuthPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                    Cloud RCA Assistant
-                </h2>
-                <p className="mt-2 text-center text-sm text-gray-600">
-                    Automated Root Cause Analysis for GCP
-                </p>
+        <div className="min-h-screen bg-[#050505] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+            {/* Ambient Background Effects */}
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-electric-blue/10 rounded-full blur-[128px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px] pointer-events-none" />
+
+            <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+                <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 mb-6 backdrop-blur-xl shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                        <span className="text-4xl">🛡️</span>
+                    </div>
+                    <h2 className="text-3xl font-black text-white tracking-tight">
+                        Cloud RCA <span className="text-electric-blue">Assistant</span>
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-500 font-mono tracking-wide uppercase">
+                        Automated SRE Intelligence Platform
+                    </p>
+                </div>
             </div>
 
-            <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <div className="mt-2 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
+                <div className="bg-black/40 backdrop-blur-xl border border-white/10 py-8 px-4 shadow-2xl sm:rounded-2xl sm:px-10 relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
 
                     {error && (
-                        <div className="mb-4 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded text-sm flex items-start">
-                            <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="mb-6 bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl text-xs font-mono flex items-start animate-pulse">
+                            <svg className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                             </svg>
                             <span>{error}</span>
@@ -89,9 +99,9 @@ const AuthPage = () => {
                     )}
 
                     {step === 1 && (
-                        <form className="space-y-6" onSubmit={handleSetup}>
+                        <form className="space-y-6 relative" onSubmit={handleSetup}>
                             <div>
-                                <label htmlFor="projectId" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="projectId" className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
                                     GCP Project ID
                                 </label>
                                 <div className="mt-1">
@@ -100,52 +110,52 @@ const AuthPage = () => {
                                         name="projectId"
                                         type="text"
                                         required
-                                        placeholder="project-e2bcb697-e160-439a-a3c"
-                                        className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        placeholder="project-id-xyz"
+                                        className="appearance-none block w-full px-4 py-3 bg-black/60 border border-white/10 rounded-xl shadow-inner placeholder-gray-600 text-gray-200 focus:outline-none focus:ring-1 focus:ring-electric-blue focus:border-electric-blue sm:text-sm transition-all"
                                         value={formData.projectId}
                                         onChange={handleChange}
                                     />
                                 </div>
-                                <p className="mt-2 text-xs text-gray-500">
-                                    Recommended: <code className="bg-gray-100 px-1 rounded">project-e2bcb697-e160-439a-a3c</code>
+                                <p className="mt-3 text-[10px] text-gray-500 font-mono">
+                                    Recommended: <span className="bg-white/5 px-1.5 py-0.5 rounded text-gray-300 border border-white/5">project-e2bcb697-e160-439a-a3c</span>
                                 </p>
                             </div>
 
                             <div>
                                 <button
                                     type="submit"
-                                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-[0_0_20px_rgba(0,180,255,0.2)] text-sm font-black text-black bg-electric-blue hover:bg-white hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-electric-blue transition-all uppercase tracking-wider"
                                 >
-                                    Continue
+                                    Initialize Setup
                                 </button>
                             </div>
                         </form>
                     )}
 
                     {step === 2 && (
-                        <div className="space-y-6">
+                        <div className="space-y-6 relative">
                             <div className="text-center">
-                                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
-                                    <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-success-green/10 border border-success-green/20 mb-6 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                                    <svg className="h-8 w-8 text-success-green" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h3 className="text-lg leading-6 font-medium text-gray-900">Ready to Connect</h3>
-                                <p className="mt-2 text-sm text-gray-500">
-                                    Project <strong>{formData.projectId}</strong> will be linked to your Google account.
+                                <h3 className="text-lg font-bold text-white tracking-wide">Connection Ready</h3>
+                                <p className="mt-2 text-xs text-gray-400 font-mono">
+                                    Linking Project: <span className="text-electric-blue">{formData.projectId}</span>
                                 </p>
                             </div>
 
-                            <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
+                            <div className="bg-blue-500/10 border border-electric-blue/20 rounded-xl p-4">
                                 <div className="flex">
                                     <div className="flex-shrink-0">
-                                        <svg className="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-5 w-5 text-electric-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
                                     <div className="ml-3 flex-1">
-                                        <p className="text-sm text-blue-700">
-                                            You'll be redirected to Google to sign in. We'll automatically get your name and email from your Google account.
+                                        <p className="text-xs text-blue-200 leading-relaxed">
+                                            You will be redirected to Google for secure authentication. We only request read-only access to specific logging scopes.
                                         </p>
                                     </div>
                                 </div>
@@ -154,10 +164,10 @@ const AuthPage = () => {
                             <button
                                 onClick={handleLogin}
                                 disabled={isLoading}
-                                className="w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl shadow-[0_0_20px_rgba(0,180,255,0.2)] text-sm font-black text-black bg-electric-blue hover:bg-white hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-electric-blue transition-all uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isLoading ? (
-                                    <LoadingSpinner size="sm" className="text-white" />
+                                    <LoadingSpinner size="sm" className="text-black" />
                                 ) : (
                                     <>
                                         <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
@@ -168,12 +178,12 @@ const AuthPage = () => {
                                 )}
                             </button>
 
-                            <div className="relative">
+                            <div className="relative my-6">
                                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                                    <div className="w-full border-t border-gray-300"></div>
+                                    <div className="w-full border-t border-white/10"></div>
                                 </div>
-                                <div className="relative flex justify-center text-sm">
-                                    <span className="px-2 bg-white text-gray-500 font-mono">INTERNAL PREVIEW</span>
+                                <div className="relative flex justify-center text-xs">
+                                    <span className="px-3 bg-[#0f0f0f] text-gray-500 font-mono tracking-widest uppercase rounded border border-white/5">Internal Preview</span>
                                 </div>
                             </div>
 
@@ -190,19 +200,26 @@ const AuthPage = () => {
                                         setIsLoading(false);
                                     }
                                 }}
-                                className="w-full flex justify-center py-2 px-4 border border-indigo-600 rounded-md shadow-sm text-sm font-medium text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="w-full flex justify-center py-3 px-4 border border-white/10 rounded-xl shadow-sm text-xs font-bold text-gray-400 bg-white/5 hover:bg-white/10 hover:text-white transition-all uppercase tracking-wider"
                             >
-                                Test Account with Real GCP Deployment
+                                Test Account (Real GCP Deployment)
                             </button>
 
                             <button
                                 onClick={() => setStep(1)}
-                                className="w-full text-center text-sm text-gray-500 hover:text-gray-700"
+                                className="w-full text-center text-xs text-gray-500 hover:text-electric-blue transition-colors font-mono mt-4"
                             >
-                                Back to Setup
+                                &lt; Back to Configuration
                             </button>
                         </div>
                     )}
+                </div>
+
+                {/* Footer */}
+                <div className="text-center mt-8">
+                    <p className="text-[10px] text-gray-600 font-mono uppercase tracking-widest">
+                        Secured by Google Identity Services
+                    </p>
                 </div>
             </div>
         </div>
